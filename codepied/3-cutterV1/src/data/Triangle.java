@@ -5,9 +5,9 @@ package data;
 //có thể nói rằng tất cả các hình tam giác đều được tạo ra từ cái khuôn này
 public class Triangle {
     //tạo cái  ngăn
-    protected double edge1;
-    protected double edge2;
-    protected double edge3;
+    protected double edgeA;//để private không ai lấy được giá trị nên phải cóget
+    protected double edgeB;
+    protected double edgeC;
     //double perimeter; //= edgeA + edgeB + edgeC; ==> sai do là cái ngăn
     /*
     Không nên tạo thuộc tính chu vi và diện tích
@@ -17,37 +17,40 @@ public class Triangle {
     ==> vậy nên tạo một hàm tính chu vi, ai gọi thì mình lấy ba cạnh ra tính
     */
     //tạo cái phễu
-
-    public Triangle(double edge1, double edge2, double edge3) {
-        this.edge1 = edge1;
-        this.edge2 = edge2;
-        this.edge3 = edge3;
+    public Triangle(double edgeA, double edgeB, double edgeC) {
+        this.edgeA = edgeA;
+        this.edgeB = edgeB;
+        this.edgeC = edgeC;
     }
+   
     //method
     //getter
-    public double getEdge1() {
-        return edge1;
+
+    public double getEdgeA() {
+        return edgeA;
     }
 
-    public double getEdge2() {
-        return edge2;
+    public double getEdgeB() {
+        return edgeB;
     }
 
-    public double getEdge3() {
-        return edge3;
+    public double getEdgeC() {
+        return edgeC;
     }
     
-    public double perimeter(){
-        return edge1 + edge2 + edge3;
+    public double getPerimeter(){
+        return edgeA + edgeB + edgeC;
     }
-    public double area(){
-        double p = perimeter() / 2;
-        return Math.sqrt(p * (p - edge1) * (p - edge2) * (p - edge3));
+    public double getArea(){
+        double p = getPerimeter() / 2;
+        return Math.sqrt(p * (p - edgeA) * (p - edgeB) * (p - edgeC));
     }
     
     public void showInFor(){
-        String str = String.format("Triangle: %.2f|%.2f|%.2f|%.2f|%.2f|", edge1
-        , edge2, edge3, perimeter(), area());
+        String str = String.format("Triangle: %.2f|%.2f|%.2f|%.2f|%.2f|"
+                , edgeA, edgeB, edgeC, getPerimeter(), getArea());
         System.out.println(str);
+        //vừa sử dụng format in đẹp mà vừa xuống hàng được
+        
     }
 }

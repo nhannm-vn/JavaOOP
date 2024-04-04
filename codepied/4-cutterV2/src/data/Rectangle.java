@@ -1,46 +1,47 @@
 package data;
 
 //khuôn class in ra hình chữ nhật
+//Square is a Rectangle
+//con         cha
 public class Rectangle {
     //tạo ngăn properties
-    public double edgeA;
-    public double edgeB;
-    public String color;
+    protected double height;
+    protected double width;
+    protected String color;
     //tạo cái phễu
-
-    public Rectangle(double edgeA, double edgeB, String color) {
-        this.edgeA = edgeA;
-        this.edgeB = edgeB;
+    
+    public Rectangle(double height, double width, String color) {
+        this.height = height;
+        this.width = width;
         this.color = color;
     }
-    
-    
-    public double getEdgeA(){
-        return edgeA;
+   
+    //get
+    public double getHeight() {
+        return height;
     }
 
-    public double getEdgeB() {
-        return edgeB;
+    public double getWidth() {
+        return width;
     }
-     public String getColor() {
+
+    public String getColor() {
         return color;
     }
-    //get
+    
     //method
-   
-
-    public double perimeter() {
-        return edgeA * 2 + edgeB * 2;
+    public double getPerimeter(){
+        return height*2 + width*2;
+    }
+    public double getArea(){
+        return height*width;
     }
     
-    public double area(){
-        return edgeA * edgeB;
-    }
-    
-    public void showInFor(){
-        String  str = String.format("Rectangle: %s|%.2f|%.2f|%.2f|%.2f"
-        ,color , edgeA, edgeB, perimeter(), area());
+    public void paint(){
+        String str = String.format("Rectangle: %s|%.2f|%.2f|%.2f|%.2f|"
+        , color, height, width, getPerimeter(), getArea());
         System.out.println(str);
     }
+
     
 }
