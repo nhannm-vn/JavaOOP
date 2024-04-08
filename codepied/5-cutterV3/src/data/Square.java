@@ -16,4 +16,7 @@ public class Square extends Rectangle {
                 owner, color, height, getPerimeter(), getArea());
         System.out.println(str);
     }
+    public void drawInFor(){//hàm của riêng thằng con
+        System.out.println("ahihi");
+    }
 }

@@ -97,6 +97,29 @@ public class Program {
             item.paint();
         }
         //đặt tên cho nó là item. Nói nó mỗi item hãy paint ra đi
+        
+        //Drift: Parse Type: ép kiểu
+        Rectangle r1 = new Rectangle("r1", "Hồng", 20, 23);
+        //anh Điệp gọi phễu rectangle và rót giá trị vào props và tạo ra đc đối tượng
+        //bản chất r1 là con trỏ 
+        Square s1 = new Square("s1", "Tím", 5);
+        r1.paint();
+        s1.paint();
+        
+        //trong thực tế hv cũng đc xem là hcn nên ta có thể tạo một hcn bằng
+        //cái khuôn hình vuông
+        Rectangle r2 = new Square("r2", "Vàng", 20);
+        //thằng con trỏ r2 có sợi dây ngắn nên là nó chỉ tới paint nên k truy 
+        //cập vào đc hết
+        r2.paint();//bị override nên bị dính square
+        //r2.drawInFor thì k thấy vì em đang là rectangle dù e có hàm đó bên trong
+        //nhưng con trỏ rectangle thì k đc truy cập vào
+        
+        Square tmp = (Square)r2;
+        //nói với nó nó là square
+        tmp.drawInFor();
+        
+        ((Square)r2).drawInFor();
     }
     
 }
