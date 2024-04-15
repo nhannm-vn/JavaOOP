@@ -70,15 +70,62 @@ public class Program {
                     break;
                 }
                 case 4:{
+                    System.out.println("Tìm kiếm sinh viên theo id: ");
+                    String newId;
+                    while(true){
+                        System.out.println("Nhập vào ID muốn tìm kiếm: ");
+                        Scanner cv = new Scanner(System.in);
+                        newId = cv.nextLine();
+                        if(newId.length() <= 0){
+                            System.err.println("Không được bỏ trống");
+                            break;
+                        }
+                        boolean isValid = newId.matches("^[S](E|S)\\d{6}$");
+                        if(isValid){
+                            break;
+                        }else{
+                            System.err.println("ID cần tìm không valid");
+                        }
+                    }
+                    
+                    
+                    //tìm trong ArrayList xem có ID đó không
+                    //kiểm tra xem  ID có tồn tại k
+                    //size(): trả ra số lượng phần tử có trong mảng
+                    int flag;
+                    flag = 0;
+                    for(int i = 0; i <= studentList.size() - 1; i++){
+                        if(studentList.get(i).getId().equals(newId)){
+                            System.out.println("Sinh viên cần tìm nè: ");
+                            studentList.get(i).showInfor();
+                            flag = 1;
+                            break;
+                        }
+                    }
+                    if(flag == 0){
+                        System.out.println("Không có sinh viên theo ID");
+                    }
                     break;
                 }
                 case 5:{
+                    System.out.println("Sắp xếp sinh viên theo ascii: ");
+                    for(int i = 0; i <= studentList.size() - 1; i++){
+                        for(int j = i + 1; j <= studentList.size() - 2; j++){
+                            if(studentList.get(j).getName()
+                                    .compareTo(studentList.get(i).getName()) == -1){
+                                
+                                                                
+                            }
+                        }
+                    }
+                    
                     break;
                 }
                 case 6:{
                     break;
                 }
                 case 7:{
+                    System.out.println("Hẹn gặp lại nhé");
                     break;
                 }
                 default:{
