@@ -146,8 +146,13 @@ public class Student extends Person{//nhận cha để đc thừa hưởng và c
         String str = String.format("|%s|%f|%s\n", id, gpa, email);
         System.out.printf(str);
 //nhưng nếu in như vậy thì nó sẽ bị trên dưới cho nên phải chỉnh lại ==> printf
-    }
+
     
+    }
+    //hàm coi thử thằng nào có học bổng kết hợp với if bên kia
+    public boolean hasScholarship(){
+        return this.gpa > 8;//nếu lớn hơn 8 thì trả ra true
+    }
     
 }
 /*

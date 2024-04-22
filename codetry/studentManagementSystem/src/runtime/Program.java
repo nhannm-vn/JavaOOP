@@ -2,6 +2,8 @@ package runtime;
 
 import data.Student;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Scanner;
 
 
@@ -68,12 +70,67 @@ public class Program {
                     break;
                 }
                 case 4:{
+                    System.out.println("Tìm kiếm sinh viên dựa vào IdStudent");
+                    System.out.println("Nhập vào IdStudent cần tìm kiếm: ");
+                    String keyId = sc.nextLine();
+                    boolean isFind = false;
+                    for (Student student : studentList) {
+                        if(student.getId().equals(keyId)){
+                            isFind = true;
+                            student.showInfor();
+                        }
+                    }
+                    if(!isFind){
+                        System.out.println("Không tìm thấy!!!");
+                    }
+                    
                     break;
                 }
                 case 5:{
+                    System.out.println("Sắp xếp sinh viên theo tên ascending: ");
+                    //Vì studentList là mảng đặc biệt nên để sắp xếp nó
+                    //ta cần  Collections là tập hợp các công cụ chuyên dùng để
+                    //xử lí mảng
+                    //xài sort có comparator(anh trọng tài) để phán xử
+                    Collections.sort(studentList, new Comparator<Student>() {
+                        @Override
+                        public int compare(Student t1, Student t2) {
+                            //thằng nào bé hơn thì đưa lên đầu
+                            if(t2.getName().compareTo(t1.getName()) < 0){
+                                return 1;//swap
+                            }else{
+                                return -1;
+                            }
+                        }
+                    });
+                    //hiển thị danh sách
+                    //sau khi sắp xếp xong thì in ra
+                    for (Student student : studentList) {
+                        student.showInfor();
+                    }
                     break;
                 }
                 case 6:{
+                    System.out.println("In ra sinh viên có học bỗng theo desc: ");
+                    //sắp xếp trước rồi xét học bỗng
+                    Collections.sort(studentList, new Comparator<Student>() {
+                        @Override
+                        public int compare(Student t1, Student t2) {
+                            if(t2.getGpa() > t1.getGpa()){
+                                return 1;
+                            }else{
+                                return -1;
+                            }
+                        }
+                    });
+                    //học bỗng là những thằng có gpa > 8
+                    //qua class Student viết hasScholarchip cho chuyên nghiệp
+                    System.out.println("Những sinh viên có học bổng theo desc là: ");
+                    for (Student student : studentList) {
+                        if(student.hasScholarship()){
+                            student.showInfor();
+                        }
+                    }
                     break;
                 }
                 case 7:{
