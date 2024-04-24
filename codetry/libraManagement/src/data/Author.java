@@ -75,7 +75,7 @@ public class Author {
             if(isDup){//nếu đã có trong danh sách
                 System.out.println("Nickname đã có người sử dụng!");
             }else{//nếu chưa có nickname đó thì gán xong rồi dừng
-                this.nickname = nickname;
+                this.nickname = inputNickname;
                 break;
             }
         }
