@@ -111,7 +111,7 @@ public class Student extends Person{
     public void showInfor(){
         super.showInfor();//cha ơi in cho con. Thằng này đang nằm trên 1 dòng
         //in ra các thông tin của cha
-        String str = String.format("|%-15s|%5.2f|%-20s|\n",
+        String str = String.format("|%-15s|%5.2f|%-27s|\n",
                                     id, gpa, email);
         System.out.printf(str);//in trên cùng 1 dòng hết rồi mới xuống dòng bằng \n chứ k bug
         
