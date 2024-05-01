@@ -27,7 +27,7 @@ public class Hunter {
     
     public void showLearningOutComes() {
         String str = String.format("%-20s|%-20s|%4d|%8.2f|%8.2f|%10s|",
-                                    "Monkey", name, yob, weight, study(), gear);
+                                    "Hunter", name, yob, weight, study(), gear);
         System.out.println(str);
     }
 }
