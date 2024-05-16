@@ -47,7 +47,7 @@ public class Book {
     
     //vì có phểu rỗng nên ta cần method thêm thông tin
     public void showInfor(){
-        String str = String.format("%-30s|%-20s|%-20s"
+        String str = String.format("%-40s|%-30s|%-25s"
                                 , bookName, createAt, nickName);
         System.out.println(str);
     }

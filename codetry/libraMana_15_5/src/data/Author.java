@@ -10,26 +10,27 @@ public class Author {
     private int yob;
     
     //constructor
-    //phểu có đầy đủ đối số, khi ta rót full giá trị sẽ đc 1 tác giả hoàn chỉnh
+    //phểu có full đối số. Khi ta truyền vào giá trị sẽ đúc ra được đối tượng
+
     public Author(String name, String nickName, int yob) {
         this.name = name;
         this.nickName = nickName;
         this.yob = yob;
     }
-    //phểu không có đối số. Thì ta cần phải thêm method nhập thêm thông tin vào
+    //phểu chỉ có nhận vào nickName. Vì khi ta tạo mới một cuốn sách thì phải thêm 
+    //nickName cho cuốn sách. nếu cuốn sách chưa có tác giả thì phải thêm mới tác
+    //giả. Nhưng vì đã thêm nickName bên cuốn sách nên chỉ cần thêm name và yob thôi
+    public Author(String nickName) {
+        this.nickName = nickName;
+    }
+    //phểu không có đối số. Để thêm mới một tác giả thì ta cần một hàm inputInfor()
+    //nhận vào full thông tin của tác giả. Tuy nhiên khi ta nhập vào ta cần check
+    //coi tác giả có trong List chưa nếu có rồi thì bắt nhập lại
 
     public Author() {
     }
     
-    //phểu có đối số nickName ta chỉ rót name và yob còn nickName có sẵn, dành cho
-    //khi check nickName của book. Nếu tác giả có rồi thì thôi. Nếu sách chưa có
-    //tác giả thì ta phải thêm mới tác giả. Mà book thì có sẵn nickName nên ta
-    //chỉ thêm 2 props kia thôi nên mới có phểu chỉ có nickName
-
-    public Author(String nickName) {
-        this.nickName = nickName;
-    }
-    //method getter
+    //getter
 
     public String getName() {
         return name;
@@ -43,49 +44,44 @@ public class Author {
         return yob;
     }
     
-    
-    //method inputInfor() dành cho trường hợp có sẵn nickname rồi
-    public void inputInfor(){
+    //hàm nhập thông tin tác giả
+    public void inputInfor(){//nhập vào 2 thông tin name và yob thôi. Xài cho phểu 1 đối số
         Scanner sc = new Scanner(System.in);
         System.out.println("Nhập vào tên tác giả: ");
         this.name = sc.nextLine();
         System.out.println("Nhập vào năm sinh tác giả: ");
         this.yob = Integer.parseInt(sc.nextLine());
     }
-    
-    /*
-    tạo hàm nhập thông tin tác giả
-    nhưng nếu tác giả đã tồn tại trong danh sách thì k cho
-    ép nhập lại
-    */
-    //này nhập full thông tin. Nhưng nếu tác giả đã nằm trong list thì ta bắt nhập lại
+    //hàm nhập full thông tin tác giả. Nhưng nếu tác giả đã tồn tại trong list thì
+    //ép nhập lại. Check bằng nickName
+    //Overrload
     public void inputInfor(ArrayList<Author> auList){
         Scanner sc = new Scanner(System.in);
-        System.out.println("Nhập vào bút danh(nickName) của tác giả: ");
+        System.out.println("Nhập vào nickName của tác giả: ");
         while(true){
-            String keyNickName = sc.nextLine();
-            boolean isDup = false;
+           String inputNickName = sc.nextLine();
+           boolean isDup = false;
             for (Author item : auList) {
-                if(item.nickName.equals(keyNickName)){
+                if(item.nickName.equals(inputNickName)){
                     isDup = true;
                 }
             }
-            if(!isDup){
-                this.nickName = keyNickName;
-                break;
+            if(isDup){//nếu có trong list thì báo là đã trùng
+                System.out.println("Tác giả đã có trong List!!!");
             }else{
-                System.out.println("NickName đã có người sử dụng rồi!!!");
+                this.nickName = inputNickName;
+                break;
             }
         }
+        //sau khi check coi tác giả có trong List không thì ta cho nhập tới 2 method còn lại
         inputInfor();
-        
     }
+    //hàm in ra thông tin
     public void showInfor(){
-        String str = String.format("%-25s|%-25s|%10d"
-                                , name, nickName, yob);
+        String str = String.format("%-30s|%-25s|%4d"
+                                  , name, nickName, yob);
         System.out.println(str);
     }
-    
 }
 /*
 Author
