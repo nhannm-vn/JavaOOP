@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Scanner;
+import utils.Inputter;
 
 /*
 PetManagement: là một cái khuôn để đúc ra anh quản lí danh sách thú cưng vậy nên
@@ -87,9 +88,9 @@ public class PetManagement {
     }
     //hàm xin id và thông báo kết quả(client)
     public void searchPetById(){
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Input pet id you wanna find: ");
-        String keyId = sc.nextLine();
+        String keyId = Inputter.getString("Input pet Id you wanna find: ", 
+                            "That field is required!!!");//không có regex vì tìm k thấy thì thôi
+        //nhập sai thì tìm không thấy thôi
         //dựa vào keyId tìm con pet
         Pet pet = searchPetById(keyId);
         if(pet == null){
@@ -99,5 +100,125 @@ public class PetManagement {
             pet.showInfor();
         }
     }
+    
+    //hàm remove thú cưng theo id: hàm sẽ xin id và tìm pet rồi xóa
+    public void removePetById(){
+        String keyId = Inputter.getString("Input pet Id you wanna remove: ", 
+                            "That field is required!!!");//không có regex vì tìm k thấy thì thôi
+        //nhập sai thì tìm không thấy thôi
+        //dựa vào keyId tìm con pet
+        Pet pet = searchPetById(keyId);
+        if(pet == null){
+            System.out.println("The pet not exist");
+        }else{
+            System.out.println("The pet information");//tìm thấy thông báo
+            pet.showInfor();
+            petList.remove(pet);//xóa pet
+            System.out.println("Removing is successful!");
+        }
+    }
+    
+    //hàm update thú cưng theo id: hàm sẽ xin id và tìm pet rồi update
+    public void updatePetById(){
+        String keyId = Inputter.getString("Input pet Id you wanna update: ", 
+                            "That field is required!!!");//không có regex vì tìm k thấy thì thôi
+        //nhập sai thì tìm không thấy thôi
+        //dựa vào keyId tìm con pet
+        Pet pet = searchPetById(keyId);
+        if(pet == null){
+            System.out.println("The pet not exist");
+        }else{
+            System.out.println("The pet information before updating");//tìm thấy thông báo
+            pet.showInfor();
+            //một con pet có owner, color, weight//chó có necklace, mèo có ribbon cần update
+            //nhưng id thì k được cập nhật
+            System.out.println("Updating.....");
+            String newOwner = Inputter.getString("Input owner: ",
+                                            "that field is required");
+            String newColor = Inputter.getString("Input color: ",
+                                            "that field is required");
+            double newWeight = Inputter.getADouble("Input weight: ",
+                                            "that weight must between 1 and 100", 1, 100);
+            pet.setOwner(newOwner);
+            pet.setColor(newColor);
+            pet.setWeight(newWeight);
+            if(pet instanceof Dog){
+                String newNecklace = Inputter.getString("Input necklace: ", "that field is required");
+                ((Dog) pet).setNecklace(newNecklace);
+            }else{
+                String newRibbon = Inputter.getString("Input ribbon: ", "that field is required");
+                ((Cat)pet).setRibbon(newRibbon);
+            }
+            System.out.println("Updating is successful!");
+            
+        }
+    }   
+    //method thêm mới một con chó
+    public void addNewDog(){
+        //muốn tạo ra một con chó thì cần đầy đủ thông tin sau đó ta bỏ thông tin
+        //vào phểu rồi dúc ra con chó mới rồi add vào list
+        //**Nhưng nếu nhập id trùng thì bắt nhập lại
+        boolean isDup;
+        String id;
+        do{
+            isDup = false;//tin ban đầu không có
+            id = Inputter.getString("Input Dog's id: ", 
+                    "Your id isn't matched DXXX!!!", "[Dd]\\d{3}").toUpperCase();
+                    //nhập thoải mái nhưng chỉ lưu hoa
+            Pet pet = searchPetById(id);
+            if(pet != null){//bị trùng
+                isDup = true;
+                System.out.println("Id has been used");
+            }
+        }while(isDup);//khi còn trùng thì còn lập
+        String owner = Inputter.getString("Input owner: ",
+                                        "that field is required");
+        String color = Inputter.getString("Input color: ",
+                                        "that field is required");
+        double weight = Inputter.getADouble("Input weight: ",
+                                        "that weight must between 1 and 100", 1, 100);
+        String necklace = Inputter.getString("Input necklace: ", "that field is required");
+
+        //tạo ra con chó bằng phểu và thông tin trên
+        Dog nDog = new Dog(id, owner, color, weight, necklace);
+        petList.add(nDog);
+        System.out.println("Adding is successfull");
+            
+    }
+        
+    //method thêm mới một con mèo
+    public void addNewCat(){
+        //muốn tạo ra một con mèo thì cần đầy đủ thông tin sau đó ta bỏ thông tin
+        //vào phểu rồi dúc ra con mèo mới rồi add vào list
+        //**Nhưng nếu nhập id trùng thì bắt nhập lại
+        boolean isDup;
+        String id;
+        do{
+            isDup = false;//tin ban đầu không có
+            id = Inputter.getString("Input Cat's id: ", 
+                    "Your id isn't matched CXXX!!!", "[Cc]\\d{3}").toUpperCase();
+                    //nhập thoải mái nhưng chỉ lưu hoa
+            Pet pet = searchPetById(id);
+            if(pet != null){//bị trùng
+                isDup = true;
+                System.out.println("Id has been used");
+            }
+        }while(isDup);//khi còn trùng thì còn lập
+        String owner = Inputter.getString("Input owner: ",
+                                        "that field is required");
+        String color = Inputter.getString("Input color: ",
+                                        "that field is required");
+        double weight = Inputter.getADouble("Input weight: ",
+                                        "that weight must between 1 and 100", 1, 100);
+        String ribbon = Inputter.getString("Input ribbon: ", "that field is required");
+
+        //tạo ra con chó bằng phểu và thông tin trên
+        Cat nCat = new Cat(id, owner, color, weight, ribbon);
+        petList.add(nCat);
+        System.out.println("Adding is successfull");
+        
+    }
+
+    
     
 }

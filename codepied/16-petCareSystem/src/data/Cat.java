@@ -18,7 +18,13 @@ public class Cat extends Pet{
     public String getRibbon() {
         return ribbon;
     }
+    //setter
 
+    public void setRibbon(String ribbon) {
+        this.ribbon = ribbon;
+    }
+    
+    
     @Override
     public void showInfor() {
         String str = String.format("%7s|%-12s|%-12s|%6.2f|%s"

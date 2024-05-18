@@ -19,6 +19,13 @@ public class Dog extends Pet{
         return necklace;
     }
     
+    //setter
+
+    public void setNecklace(String necklace) {
+        this.necklace = necklace;
+    }
+    
+    
     @Override
     public void showInfor() {
         String str = String.format("%7s|%-12s|%-12s|%6.2f|%s"

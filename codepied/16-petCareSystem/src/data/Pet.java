@@ -37,6 +37,23 @@ public abstract class Pet {
     public double getWeight() {
         return weight;
     }
+    //setter
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public void setWeight(double weight) {
+        this.weight = weight;
+    }
     
     /*
     method showInfor()giúp tạo ra cái chuỗi đẹp và in ra nó
