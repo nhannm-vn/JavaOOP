@@ -1,29 +1,34 @@
 package runtime;
 
-import com.sun.org.apache.bcel.internal.generic.AALOAD;
 import data.PetManagement;
 import ui.Menu;
 
 public class Program {
     public static void main(String[] args) {
-        //tạo ra anh quản lí danh sách pet
-        PetManagement pm  =  new PetManagement();
+        //Muốn có Dog và Cat thì ta cần có khuôn để đúc ra chúng
+        //Nhưng để đưa về quản lí chung một mảng thì ta cần một thằng
+        //lớn hơn là Pet. Ta đưa hết cái chung cho nó.
+        PetManagement pm = new PetManagement();
+        //add dữ liệu vào
         pm.initData();
-        //tạo ra anh quản lí menu
-        Menu menu = new Menu("Pet Care System Menu");
+        
+        //tạo ra một anh quản lí menu
+        Menu menu = new Menu("Pet Management System");
+        
+        //add các option cho menu
         menu.addNewOption("Add new Dog");
         menu.addNewOption("Add new Cat");
-        menu.addNewOption("Print pet list");
-        menu.addNewOption("Search pet by id");
-        menu.addNewOption("Update pet by id");
-        menu.addNewOption("Remove pet by id");
+        menu.addNewOption("Show list pet");
+        menu.addNewOption("Search pet order by id");
+        menu.addNewOption("Update pet order by id");
+        menu.addNewOption("Remove pet order by id");
         menu.addNewOption("Sort pet order by weight");
         menu.addNewOption("Save file and quit");
         
-        int choice;
         while(true){
             menu.print();
-            choice = menu.getChoice();//chỉ nhập từ 1 tới 8 k cần key default
+            int choice = menu.getChoice();
+            //không cần default vì đã chặn 1 tới size bên kia
             switch(choice){
                 case 1:{
                     pm.addNewDog();
@@ -34,7 +39,7 @@ public class Program {
                     break;
                 }
                 case 3:{
-                    pm.showPetList();
+                    pm.showPetInfor();
                     break;
                 }
                 case 4:{
@@ -42,7 +47,7 @@ public class Program {
                     break;
                 }
                 case 5:{
-                    pm.updatePetById();
+                    pm.updatingPetById();
                     break;
                 }
                 case 6:{
@@ -50,7 +55,7 @@ public class Program {
                     break;
                 }
                 case 7:{
-                    pm.sortPetListByWeight();
+                    pm.sortPetByWeight();
                     break;
                 }
                 case 8:{
@@ -58,7 +63,6 @@ public class Program {
                     return;
                 }
             }
-            
         }
         
     }

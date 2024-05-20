@@ -60,6 +60,7 @@ public class PetManagement {
         
         //bỏ anh trọng tài và list vào và thông qua Collections để sắp xếp
         Collections.sort(petList, orderByWeight);
+        System.out.println("Sorting successful");
         //khong có in ra do mỗi khối có một nhiệm vụ riêng biệt
     }
     
