@@ -1,9 +1,13 @@
 package data;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Scanner;
+import java.util.StringTokenizer;
 import utils.Inputter;
 
 /*
@@ -220,6 +224,39 @@ public class PetManagement {
         
     }
 
-    
+    //method đọc file
+    public void loadFromFile(String url){
+        //biến url thành file
+        File f = new File(url);//từ url tạo thành object file
+        try {//neu co loi thi khong dung lai
+            //xử lý đọc file thông qua BufferReader
+            //ma BufferReader chi doc duoc loai FileReader
+            BufferedReader reader = new BufferedReader(new FileReader(f));
+            //bam ra thang dau tien
+            String line = reader.readLine();//doc dong dau tien
+            while(line != null){//con khac null con xu ly
+                //xu li dong
+                StringTokenizer st = new StringTokenizer(line, "|");
+                String id = st.nextToken().trim();
+                String owner = st.nextToken().trim();
+                String color = st.nextToken().trim();
+                double weight = Double.parseDouble(st.nextToken().trim());
+                String special = st.nextToken().trim();
+                //special ta không thể biết là necklace hay ribbon 
+                //do đó ta cần 1 cái if
+                if(special.matches("[Dd]\\{3}")){
+                    Dog nDog = new Dog(id, owner, color, weight, special);
+                    petList.add(nDog);
+                }else{
+                    Cat nCat = new Cat(id, owner, color, weight, special);
+                    petList.add(nCat);
+                }
+                line = reader.readLine();//đọc dòng tiếp theo
+            }
+            
+        } catch (Exception e) {
+        }
+        
+    }
     
 }

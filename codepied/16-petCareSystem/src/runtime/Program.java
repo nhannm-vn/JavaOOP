@@ -8,7 +8,9 @@ public class Program {
     public static void main(String[] args) {
         //tạo ra anh quản lí danh sách pet
         PetManagement pm  =  new PetManagement();
-        pm.initData();
+        String url = "D:\\PIEDTEAM_JavaOOP\\JavaOOP\\codepied\\16-petCareSystem\\petListDoc.txt";
+        pm.loadFromFile(url);
+        //pm.initData();
         //tạo ra anh quản lí menu
         Menu menu = new Menu("Pet Care System Menu");
         menu.addNewOption("Add new Dog");
