@@ -56,6 +56,7 @@ public class Program {
                     break;
                 }
                 case 8:{
+                    pm.saveToFile(url);
                     System.out.println("See you again!");
                     return;
                 }

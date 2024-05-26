@@ -38,4 +38,10 @@ public class Dog extends Pet{
         System.out.println(str);
     }
     
+    @Override
+    public String toString() {
+        String str = String.format("%-10s|%-10s|%-10s|%6.2f|%s"
+                                    , id, owner, color, weight, necklace);
+        return str;
+    }
 }

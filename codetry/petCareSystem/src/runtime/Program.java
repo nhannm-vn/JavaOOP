@@ -10,7 +10,10 @@ public class Program {
         //lớn hơn là Pet. Ta đưa hết cái chung cho nó.
         PetManagement pm = new PetManagement();
         //add dữ liệu vào
-        pm.initData();
+        //pm.initData();
+        String url = "D:\\PIEDTEAM_JavaOOP\\JavaOOP\\codetry\\petCareSystem\\petListDoc.txt";
+        //thay vì phải xài method để add dữ liệu vào thì ta sẽ dùng hàm cho đọc file
+        pm.loadFromFile(url);
         
         //tạo ra một anh quản lí menu
         Menu menu = new Menu("Pet Management System");
@@ -59,6 +62,7 @@ public class Program {
                     break;
                 }
                 case 8:{
+                    pm.saveToFile(url);
                     System.out.println("See you again!");
                     return;
                 }

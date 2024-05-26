@@ -3,10 +3,16 @@ PetManagement: đúc anh quản lí dùng để quản lí các chức năng c�
  */
 package data;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Scanner;
+import java.util.StringTokenizer;
 import utils.Inputter;
 
 public class PetManagement {
@@ -180,7 +186,98 @@ public class PetManagement {
         petList.add(nCat);
         System.out.println("Adding new dog successful!");
     }
+    /*
+    //hàm đọc file
+    public boolean loadFromFile(String url){
+        //tạo ra object file từ url
+        File f = new File(url);
+        //bỏ vào try catch để dù có lỗi vẫn chạy tiếp
+        try {
+            //để đọc file ta phải nhờ thằng BufferReader
+            //để BufferReader đọc được thì ta phải chuyển file thành FileReader
+            BufferedReader reader = new BufferedReader(new FileReader(f));
+            //đọc từng dòng để xử lí
+            String line = reader.readLine();
+            while(line != null){
+                //dùng tokenizer để băm nhỏ từng thằng trong line
+                StringTokenizer st = new StringTokenizer(line, "|");
+                String id = st.nextToken().trim();
+                String owner = st.nextToken().trim();
+                String color = st.nextToken().trim();
+                double weight = Double.parseDouble(st.nextToken().trim());
+                //vì mình chưa biết là con gì nên để cái băm sau cùng là special
+                String special = st.nextToken().trim();
+                if(special.matches("[Dd]\\{3}")){
+                    Dog pet = new Dog(id, owner, color, weight, special);
+                    petList.add(pet);
+                }else{
+                    Cat pet = new Cat(id, owner, color, weight, special);
+                    petList.add(pet);
+                }
+                //thêm con đó vào list
+                //sau đó đọc dòng tiếp theo
+                line = reader.readLine();
+            }
+            return true;//nếu đọc được hết k bị gì
+        } catch (Exception e) {
+            //nếu đọc file bị lỗi thì trả ra false và ném ra để đọc lỗi
+            System.out.println("File bị lỗi gòi nè: " + e);
+            return false;
+        }
+    }*/
     
+    //hàm đọc file
+    public boolean loadFromFile(String url){
+        //tạo ra objecet file
+        File f = new File(url);
+        try {
+            //để đọc file cần BufferReader đọc được FileReader
+            BufferedReader reader = new BufferedReader(new FileReader(f));
+            //đọc dòng đầu tiên
+            String line = reader.readLine();
+            while(line != null){
+                //băm ra từng thằng trong 1 line
+                StringTokenizer st = new StringTokenizer(line, "|");
+                String id = st.nextToken().trim();
+                String owner = st.nextToken().trim();
+                String color = st.nextToken().trim();
+                double weight = Double.parseDouble(st.nextToken().trim());
+                //còn special là necklace hoặc ribbon
+                String special = st.nextToken().trim();
+                if(special.matches("[Dd\\{3}]")){
+                    Dog nDog = new Dog(id, owner, color, weight, special);
+                    petList.add(nDog);
+                }else{
+                    Cat nCat = new Cat(id, owner, color, weight, special);
+                    petList.add(nCat);
+                }
+                //đọc dòng tiếp theo
+                line = reader.readLine();
+            }
+            return true;
+        } catch (Exception e) {
+            System.out.println("File bi loi goi " +e);
+            return false;
+        }
+    }
+    //lưu file sau khi xử lí
+    public boolean saveToFile(String url){
+        File f = new File(url);
+        try {
+            //này là thằng giúp mình ghi
+            OutputStreamWriter writter = new OutputStreamWriter(new FileOutputStream(f));
+            for (Pet pet : petList) {
+               writter.write(pet.toString());
+               writter.write("\n");
+            }
+            //save roi dong
+            writter.flush();
+            return true;
+        } catch (Exception e) {
+            System.out.println("File bi loi goi");
+            return false;
+        }
+    }
 }
 /*
     1. Thêm mới 1 con cún

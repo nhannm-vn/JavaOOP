@@ -35,5 +35,13 @@ public class Cat extends Pet{
                                     , id, owner, color, weight, ribbon);
         System.out.println(str);
     }
+
+    @Override
+    public String toString() {
+        String str = String.format("%-10s|%-10s|%-10s|%6.2f|%s"
+                                    , id, owner, color, weight, ribbon);
+        return str;
+    }
+    
     
 }

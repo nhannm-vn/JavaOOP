@@ -2,7 +2,9 @@ package data;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -225,7 +227,7 @@ public class PetManagement {
     }
 
     //method đọc file
-    public void loadFromFile(String url){
+    public boolean loadFromFile(String url){
         //biến url thành file
         File f = new File(url);//từ url tạo thành object file
         try {//neu co loi thi khong dung lai
@@ -253,10 +255,30 @@ public class PetManagement {
                 }
                 line = reader.readLine();//đọc dòng tiếp theo
             }
-            
+            return true;
         } catch (Exception e) {
+            System.out.println("File bị lỗi gòi nè");
+            return false;
         }
-        
+    }
+    
+    //method lưu, ghi file
+    public boolean saveToFile(String url){
+        File f = new File(url);
+        try {//bị lỗi thì k bị ngắt
+            //xử lý file
+            OutputStreamWriter writter = new OutputStreamWriter(new FileOutputStream(f));
+            for (Pet pet : petList) {
+                writter.write(pet.toString());//đi từu đầu tới cuối danh sách viết ra từng dòng
+                //toString() lấy ra cái chuỗi đẹp
+                writter.write("\n");//xong mỗi dòng thì phải xuống hàng
+            }
+            writter.flush();//save rồi mới tắt
+            return true;
+        } catch (Exception e) {
+            System.out.println("File bi loi goi ne " +e);
+            return false;
+        }
     }
     
 }

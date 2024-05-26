@@ -1,0 +1,4 @@
+D001|Diep        |Red         |  2.20|Vong Bach Kim
+D003|Cuong       |Blue        |  2.60|Vong I <3 U
+C001|An          |Pink        |  3.70|Ribbon hong
+C003|Nhan        |Green       |  5.70|iubevan
