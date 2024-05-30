@@ -35,6 +35,7 @@ public class Person {
         return yob;
     }
     
+    
     //method nhập thông tin từ người dùng do xài phểu rỗng
     public void inputInfor(){
         this.name = Inputter.getString("Input your name: ", "Not be empty!");
@@ -45,9 +46,9 @@ public class Person {
     
     //method showInfor()
     public void showInfor(){
-        String str = String.format("%10s|%10s|%4d"
+        String str = String.format("%10s|%10s|%4d|"
                                             , name, gender, yob);
-        System.out.println(str);
+        System.out.printf(str);//giups in student ra tren 1 hang
     }
 }
 /*
