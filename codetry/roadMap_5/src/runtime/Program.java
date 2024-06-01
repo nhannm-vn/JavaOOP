@@ -11,6 +11,8 @@ public class Program {
         ArrayList<Author> auList = new ArrayList<>();
         ArrayList<Book> boList = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
+        //ham truyen thong tin vao
+        initData(auList, boList);
         int choice;
         do{
             //showMenu
@@ -33,9 +35,10 @@ public class Program {
                         nAuthor.inputInfor();
                         //them tac gia vao trong list
                         auList.add(nAuthor);
-                    }else{//neu da co tac gia roi thi chi them cuon sach vao list thoi
-                        boList.add(nBook);
                     }
+                    //dù có thêm mới tác giả vào list hay không thì cũng phải thêm sách vào list
+                        boList.add(nBook);
+                    
                     System.out.println("Thêm mới một cuốn sách thành công!");
                     break;
                 }
@@ -91,8 +94,19 @@ public class Program {
         System.out.println("3.Nhập thông tin tác giả");
         System.out.println("4.Tìm kiếm sách theo bút danh");
         System.out.println("5.Thoát");
+        
     }
-    
+    public static void initData(ArrayList<Author> auList, ArrayList<Book> boList){
+        //nạp giá trị vào danh sách tác giả
+        auList.add(new Author("Ngoo Kien Huy", "Huy Quan Hoa", 1997));
+        auList.add(new Author("Nguyen Thuy Chi", "ChiPu", 1994));
+        auList.add(new Author("Le Muoi Diep", "UncleTen", 1999));
+        
+        //nạp vào vài cuốn sách
+        boList.add(new Book("Kho Báu nơi biển sâu", "15-4-2024", "Huy Quan Hoa"));
+        boList.add(new Book("Đừng làm mọi thứ phức tạp", "16-4-2024", "ChiPu"));
+        boList.add(new Book("Dạy người giàu giả nghèo", "12-4-2024", "UncleTen"));
+    }
 }
 //mối quan hệ has-in, không dựa trên mặt huyết thống
 /*
