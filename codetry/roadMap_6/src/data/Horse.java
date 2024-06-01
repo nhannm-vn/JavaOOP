@@ -26,12 +26,17 @@ public class Horse extends Herbivore{
     public double study() {
         //Tạo ra một cái random
         Random random = new Random();//tạo ra một object random
+        //ta lấy số thực từ 0 đến 1 * RECEPTIVE sẽ ra đc random từng thằng
+        //mỗi thằng thông minh khác nhau <= 30
         return RECEPTIVE * random.nextDouble();
     }
 
     @Override
     public void showLearningOutComes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //qua bên cha Herbivore mở protected để bên này thừa hưởng các biến
+        String str = String.format("%-10s|%-30s|%4d|%8.2f|%8.2f|%-10s|"
+                                    , "Horse", name, yob, weight, study(), colorSaddle);
+        System.out.println(str);
     }
     
 }

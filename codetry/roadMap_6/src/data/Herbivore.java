@@ -2,9 +2,9 @@ package data;
 //class Herbivore đúc ra các động vật hoang dã
 public abstract class Herbivore {
     //props mà con vật nào cũng phải có
-    private String name;
-    private int yob;
-    private double weight;
+    protected String name;
+    protected int yob;
+    protected double weight;
     
     //constructor
 
