@@ -1,10 +1,13 @@
 package runtime;
 
 import data.StudentInIT;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Program {
     public static void main(String[] args) {
+        
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter role: ");
         String keyRole = sc.nextLine();
@@ -56,6 +59,9 @@ public class Program {
                 break;
             }
         }
+        
+        
+        
     }
     public static void menu(){
         System.out.println("1.Test mediumScore()");
