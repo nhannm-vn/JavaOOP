@@ -22,6 +22,7 @@ public class Program {
         //tạo ra một Scanner
         Scanner sc = new Scanner(System.in);
         int choose;
+        initData(auList, boList);
         do{
             //showMenu()
             //get choose

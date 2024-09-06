@@ -1,30 +1,26 @@
 package data;
 
-//tạo cái khuôn chuyên dùng để đúc ra những cuốn sách(Book)
-
 import java.util.Scanner;
 
 public class Book {
-    //properties chỉ có sách có
+    //properties
     private String bookName;
     private String createAt;
     private String nickName;
     
-    //tạo constructor có full đối số
+    //constructer
 
     public Book(String bookName, String createAt, String nickName) {
         this.bookName = bookName;
         this.createAt = createAt;
         this.nickName = nickName;
     }
-    
-    //tạo constructor không có đối số. Nếu không có đối số thì phải có thêm 
-    //hàm inputInfor(). Để nhập thông tin
-    //Overload
+    //không có đối số 
+
     public Book() {
     }
     
-    //tạo ra getter và không có setter
+    //tạo getter 
 
     public String getBookName() {
         return bookName;
@@ -54,19 +50,20 @@ public class Book {
         this.nickName = sc.nextLine();
         
     }
-    
     //method in ra thông tin của cuốn sách
+    
     public void showInfor(){
-        //nhớ có \n để xuống hàng không thì sẽ bug
-        System.out.printf("|%-30s|%-25s|%-15s\n", bookName, createAt, nickName);
+        String str = String.format("%-30s|%-15s|%-20s", bookName, createAt, nickName);
+        System.out.println(str);
     }
+    
     
 }
 /*
 Book
     bookName createAt nickName
     tạo có đối số và k có đồi số
-    tạo getter and setter
+    tạo getter anh setter
     tạo hàm input//nếu mà sách này có tác giả mà 
     có tên trong danh sách tác giả thì bỏ qua
     nếu tác giả của cuốn sách mà chưa có tồn tại trong ds
